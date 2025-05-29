@@ -23,6 +23,6 @@
 				<mat-icon>delete</mat-icon>
 			</button>
 		</mat-card>
-		<button mat-raised-button style="width: 100%;" color="primary" (click)="openAddArticle(magazine.id)" *ngIf="isAuthenticated$ | async">Add Article</button>
+		<button mat-raised-button style="width: 100%;" color="primary" *ngIf="isAuthenticated$ | async"  (click)="openAddArticle(magazine.id)" >Add Article</button>
 	</div>
 </ng-container>

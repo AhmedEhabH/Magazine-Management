@@ -85,13 +85,32 @@
 					{{ isLoading ? 'Creating Account...' : 'Create Account' }}
 				</button>
 
-				<!-- Login Link -->
-				<div class="login-link">
-					<p>Already have an account?
-						<a routerLink="/login" mat-button color="primary">Login here</a>
-					</p>
+				<!-- Add this temporarily for debugging -->
+				<!-- <div *ngIf="!registerForm.valid">
+					<p>Form is invalid. Errors:</p>
+					<ul>
+						<li *ngIf="registerForm.get('email')?.invalid">Email: {{ registerForm.get('email')?.errors |
+							json }}</li>
+						<li *ngIf="registerForm.get('userName')?.invalid">Username: {{
+							registerForm.get('userName')?.errors | json }}</li>
+						<li *ngIf="registerForm.get('password')?.invalid">Password: {{
+							registerForm.get('password')?.errors | json }}</li>
+						<li *ngIf="registerForm.get('confirmPassword')?.invalid">Confirm Password: {{
+							registerForm.get('confirmPassword')?.errors | json }}</li>
+						<li *ngIf="registerForm.hasError('passwordMismatch')">Passwords don't match</li>
+					</ul>
 				</div>
+				<p>Form valid: {{ registerForm.valid }}</p>
+				<p>Is loading: {{ isLoading }}</p> -->
+
+
 			</form>
+			<!-- Login Link -->
+			<div class="login-link">
+				<p>Already have an account?
+					<a routerLink="/login" mat-button color="primary">Login here</a>
+				</p>
+			</div>
 		</mat-card-content>
 	</mat-card>
 </div>

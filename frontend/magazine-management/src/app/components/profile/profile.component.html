@@ -1,0 +1,195 @@
+<!-- profile.component.html -->
+<div class="profile-container">
+	<!-- Header Section -->
+	<div class="profile-header">
+		<div class="container">
+			<h1 class="page-title">Overview</h1>
+		</div>
+	</div>
+
+	<div class="container">
+		<!-- Statistics Section -->
+		<div class="section-title">Statistics</div>
+		<div class="stats-grid">
+			<div class="stat-card">
+				<div class="stat-label">Total Articles</div>
+				<div class="stat-value">{{ userStats.totalArticles }}</div>
+			</div>
+			<div class="stat-card">
+				<div class="stat-label">Total Magazines</div>
+				<div class="stat-value">{{ userStats.totalMagazines }}</div>
+			</div>
+			<div class="stat-card">
+				<div class="stat-label">Published Articles</div>
+				<div class="stat-value">{{ userStats.publishedArticles }}</div>
+			</div>
+			<div class="stat-card">
+				<div class="stat-label">Pending Articles</div>
+				<div class="stat-value">{{ userStats.pendingArticles }}</div>
+			</div>
+		</div>
+
+		<!-- Main Content Grid -->
+		<div class="content-grid">
+			<!-- Profile Information Section -->
+			<div class="profile-section">
+				<!-- Profile Card -->
+				<mat-card class="profile-card">
+					<!-- <div class="profile-image-section">
+						<div class="profile-image-container">
+							<img [src]="profileImageUrl" [alt]="getFullName()" class="profile-image"
+								*ngIf="profileImageUrl; else initialsTemplate">
+
+							<ng-template #initialsTemplate>
+								<div class="profile-initials">{{ getInitials() }}</div>
+							</ng-template>
+
+							<div class="image-overlay" *ngIf="isEditMode">
+								<input type="file" #fileInput (change)="onImageUpload($event)" accept="image/*"
+									style="display: none;">
+								<button mat-icon-button (click)="fileInput.click()" class="upload-btn">
+									<mat-icon>camera_alt</mat-icon>
+								</button>
+							</div>
+						</div>
+					</div> -->
+
+					<div class="profile-info">
+						<h2 class="user-name">{{ getFullName() }}</h2>
+						<h2 class="roles">{{ this.user?.roles}}</h2>
+						<!-- <p class="user-title">{{ profileForm.get('jobTitle')?.value || 'Member' }}</p> -->
+						<!-- <p class="user-location" *ngIf="profileForm.get('location')?.value">
+							<mat-icon>location_on</mat-icon>
+							{{ profileForm.get('location')?.value }}
+						</p> -->
+
+						<div class="profile-actions">
+							<button mat-raised-button color="primary" (click)="toggleEditMode()" [disabled]="isLoading">
+								<mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+								<mat-icon *ngIf="!isLoading">{{ isEditMode ? 'save' : 'edit' }}</mat-icon>
+								{{ isLoading ? 'Saving...' : (isEditMode ? 'Save Changes' : 'Edit Profile') }}
+							</button>
+
+							<button mat-stroked-button *ngIf="isEditMode" (click)="cancelEdit()">
+								<mat-icon>cancel</mat-icon>
+								Cancel
+							</button>
+						</div>
+					</div>
+				</mat-card>
+
+				<!-- Personal Information -->
+				<mat-card class="info-card">
+					<mat-card-header>
+						<mat-card-title>
+							<mat-icon>person</mat-icon>
+							Personal Information
+						</mat-card-title>
+					</mat-card-header>
+
+					<mat-card-content>
+						<form [formGroup]="profileForm">
+							<!-- <div class="form-row">
+								<mat-form-field appearance="outline" class="half-width">
+									<mat-label>First Name</mat-label>
+									<input matInput formControlName="firstName" [readonly]="!isEditMode">
+									<mat-icon matSuffix>person</mat-icon>
+								</mat-form-field>
+
+								<mat-form-field appearance="outline" class="half-width">
+									<mat-label>Last Name</mat-label>
+									<input matInput formControlName="lastName" [readonly]="!isEditMode">
+									<mat-icon matSuffix>person</mat-icon>
+								</mat-form-field>
+							</div> -->
+
+							<mat-form-field appearance="outline" class="full-width">
+								<mat-label>Username</mat-label>
+								<input matInput formControlName="userName" [readonly]="!isEditMode">
+								<mat-icon matSuffix>alternate_email</mat-icon>
+								<mat-error *ngIf="profileForm.get('userName')?.hasError('required')">
+									Username is required
+								</mat-error>
+							</mat-form-field>
+
+							<mat-form-field appearance="outline" class="full-width">
+								<mat-label>Email</mat-label>
+								<input matInput type="email" formControlName="email" [readonly]="!isEditMode">
+								<mat-icon matSuffix>email</mat-icon>
+								<mat-error *ngIf="profileForm.get('email')?.hasError('required')">
+									Email is required
+								</mat-error>
+								<mat-error *ngIf="profileForm.get('email')?.hasError('email')">
+									Please enter a valid email
+								</mat-error>
+							</mat-form-field>
+
+							<!-- <mat-form-field appearance="outline" class="full-width">
+								<mat-label>Phone</mat-label>
+								<input matInput formControlName="phone" [readonly]="!isEditMode">
+								<mat-icon matSuffix>phone</mat-icon>
+							</mat-form-field> -->
+
+							<!-- <mat-form-field appearance="outline" class="full-width">
+								<mat-label>Location</mat-label>
+								<input matInput formControlName="location" [readonly]="!isEditMode">
+								<mat-icon matSuffix>location_on</mat-icon>
+							</mat-form-field> -->
+
+							<!-- <mat-form-field appearance="outline" class="full-width">
+								<mat-label>Website</mat-label>
+								<input matInput formControlName="website" [readonly]="!isEditMode">
+								<mat-icon matSuffix>link</mat-icon>
+							</mat-form-field> -->
+
+							<!-- <mat-form-field appearance="outline" class="full-width">
+								<mat-label>Company</mat-label>
+								<input matInput formControlName="company" [readonly]="!isEditMode">
+								<mat-icon matSuffix>business</mat-icon>
+							</mat-form-field> -->
+
+							<!-- <mat-form-field appearance="outline" class="full-width">
+								<mat-label>Job Title</mat-label>
+								<input matInput formControlName="jobTitle" [readonly]="!isEditMode">
+								<mat-icon matSuffix>work</mat-icon>
+							</mat-form-field> -->
+
+							<!-- <mat-form-field appearance="outline" class="full-width">
+								<mat-label>Bio</mat-label>
+								<textarea matInput formControlName="bio" rows="4" [readonly]="!isEditMode"
+									placeholder="Tell us about yourself..."></textarea>
+								<mat-icon matSuffix>description</mat-icon>
+							</mat-form-field> -->
+						</form>
+					</mat-card-content>
+				</mat-card>
+			</div>
+
+			<!-- Recent Activity Section -->
+			<div class="activity-section">
+				<div class="section-title">Recent Activity</div>
+
+				<div class="activity-list">
+					<div class="activity-item" *ngFor="let activity of recentActivities">
+						<div class="activity-content">
+							<div class="activity-info">
+								<h3 class="activity-title">
+									<mat-icon>{{ getActivityIcon(activity.type) }}</mat-icon>
+									{{ activity.title }}
+								</h3>
+								<p class="activity-description">{{ activity.description }}</p>
+								<div class="activity-date">{{ formatDate(activity.date) }}</div>
+							</div>
+							<button mat-stroked-button class="view-btn">
+								View {{ activity.type === 'created' ? 'Magazine' : 'Article' }}
+							</button>
+						</div>
+						<div class="activity-image">
+							<img [src]="activity.image" [alt]="activity.title">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
