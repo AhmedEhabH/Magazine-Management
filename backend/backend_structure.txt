@@ -1,0 +1,62 @@
+Folder PATH listing for volume New Volume
+Volume serial number is 7A8F-DE11
+D:.
++---.vs
+¦   +---2025-05-16-2350
+¦       +---v17
++---MagazineManagment
+    +---MagazineManagment
+        +---bin
+        ¦   +---Debug
+        ¦       +---net8.0
+        ¦           +---cs
+        ¦           +---de
+        ¦           +---es
+        ¦           +---fr
+        ¦           +---it
+        ¦           +---ja
+        ¦           +---ko
+        ¦           +---pl
+        ¦           +---pt-BR
+        ¦           +---ru
+        ¦           +---runtimes
+        ¦           ¦   +---browser
+        ¦           ¦   ¦   +---lib
+        ¦           ¦   ¦       +---net8.0
+        ¦           ¦   +---unix
+        ¦           ¦   ¦   +---lib
+        ¦           ¦   ¦       +---net6.0
+        ¦           ¦   +---win
+        ¦           ¦   ¦   +---lib
+        ¦           ¦   ¦       +---net6.0
+        ¦           ¦   +---win-arm
+        ¦           ¦   ¦   +---native
+        ¦           ¦   +---win-arm64
+        ¦           ¦   ¦   +---native
+        ¦           ¦   +---win-x64
+        ¦           ¦   ¦   +---native
+        ¦           ¦   +---win-x86
+        ¦           ¦       +---native
+        ¦           +---SeedData
+        ¦           +---tr
+        ¦           +---zh-Hans
+        ¦           +---zh-Hant
+        +---Controllers
+        +---Data
+        +---Dto
+        ¦   +---Admin
+        ¦   +---ArticleDto
+        ¦   +---AuthDto
+        ¦   +---MagazineDto
+        +---Migrations
+        +---Model
+        +---obj
+        ¦   +---Debug
+        ¦       +---net8.0
+        ¦           +---EndpointInfo
+        ¦           +---ref
+        ¦           +---refint
+        ¦           +---staticwebassets
+        +---Properties
+        +---SeedData
+        +---Utlis

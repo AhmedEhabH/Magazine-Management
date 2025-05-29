@@ -1,0 +1,55 @@
+<!-- <div class="magazine-list" *ngIf="magazines">
+	<mat-card *ngFor="let magazine of magazines">
+		<div (click)="openMagazineDetails(magazine.id)" style="cursor: pointer;">
+			<img mat-card-image [src]="magazine.coverImageUrl" alt="Magazine cover"
+				style="height:200px; object-fit:cover;">
+			<mat-card-title>{{ magazine.title }}</mat-card-title>
+		</div>
+		<mat-card-actions>
+			<button mat-icon-button (click)="openEditMagazine(magazine)">
+				<mat-icon>edit</mat-icon>
+			</button>
+			<button mat-icon-button (click)="deleteMagazine(magazine)">
+				<mat-icon>delete</mat-icon>
+			</button>
+		</mat-card-actions>
+	</mat-card>
+	<button mat-fab color="primary" class="add-btn" (click)="openAddMagazine()">
+		<mat-icon>add</mat-icon>
+	</button>
+</div> -->
+<div class="magazine-container">
+	<div class="header-section">
+		<h2>Magazines</h2>
+		<button *ngIf="canCreateMagazine()" mat-fab color="primary" (click)="openAddMagazine()" class="add-button">
+			<mat-icon>add</mat-icon>
+		</button>
+	</div>
+
+	<div class="magazines-grid">
+		<mat-card *ngFor="let magazine of magazines" class="magazine-card">
+			<div (click)="openMagazineDetails(magazine.id)" style="cursor: pointer;">
+				<img mat-card-image [src]="magazine.coverImageUrl" alt="Magazine cover"
+					style="height:200px; object-fit:cover;">
+				<mat-card-title>{{ magazine.title }}</mat-card-title>
+				<mat-card-header>
+					<mat-card-title>{{ magazine.title }}</mat-card-title>
+					<mat-card-subtitle>{{ magazine.description }}</mat-card-subtitle>
+				</mat-card-header>
+			</div>
+
+
+			<mat-card-actions>
+				<button mat-button (click)="openMagazineDetails(magazine.id)">
+					View Details
+				</button>
+				<button *ngIf="canEditMagazine()" mat-button (click)="openEditMagazine(magazine)">
+					Edit
+				</button>
+				<button *ngIf="canDeleteMagazine()" mat-button color="warn" (click)="deleteMagazine(magazine)">
+					Delete
+				</button>
+			</mat-card-actions>
+		</mat-card>
+	</div>
+</div>

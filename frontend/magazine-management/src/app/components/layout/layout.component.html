@@ -1,0 +1,15 @@
+<!-- <div class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden"
+	style='font-family: "Public Sans", "Noto Sans", sans-serif;' [class.dark-theme]="isDarkTheme">
+	<div class="layout-container flex h-full grow flex-col">
+		<app-header></app-header>
+		<div class="px-40 flex flex-1 justify-center py-5">
+			<ng-content></ng-content>
+		</div>
+	</div>
+</div> -->
+<div class="layout-container" [class.dark-theme]="isDarkTheme">
+	<app-header></app-header>
+	<main class="main-content">
+		<ng-content></ng-content>
+	</main>
+</div>

@@ -1,0 +1,28 @@
+<ng-container *ngIf="magazine">
+	<mat-card>
+		<img mat-card-image [src]="magazine.coverImageUrl" alt="{{magazine.title}}" />
+		<mat-card-title>{{ magazine.title }}</mat-card-title>
+		<mat-card-content>
+			<p>{{ magazine.description }}</p>
+		</mat-card-content>
+	</mat-card>
+
+	<h3>Articles</h3>
+	<div class="articles-list">
+		<mat-card *ngFor="let article of articles" class="article-card">
+			<div (click)="openArticleDetails(article.id)" style="cursor:pointer;">
+				<mat-card-title>{{ article.title }}</mat-card-title>
+				<mat-card-content>
+					<p>{{ article.summary }}</p>
+				</mat-card-content>
+			</div>
+			<button mat-icon-button (click)="openEditArticle(article)">
+				<mat-icon>edit</mat-icon>
+			</button>
+			<button mat-icon-button color="warn" (click)="openDeleteArticleDialog(article)">
+				<mat-icon>delete</mat-icon>
+			</button>
+		</mat-card>
+		<button mat-raised-button style="width: 100%;" color="primary" (click)="openAddArticle(magazine.id)" *ngIf="isAuthenticated$ | async">Add Article</button>
+	</div>
+</ng-container>

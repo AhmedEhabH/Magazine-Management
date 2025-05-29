@@ -1,0 +1,22 @@
+<ng-container *ngIf="article">
+	<mat-card>
+		<mat-card-title>{{ article.title }}</mat-card-title>
+		<mat-card-subtitle>{{ article.createdAt | date:'medium' }}
+			<span *ngIf="article.magazineName">
+				|
+				<a [href]="'/magazines/' + article.magazineId">
+					{{ article.magazineName }}
+				</a>
+			</span>
+		</mat-card-subtitle>
+		<mat-card-content>
+			<!-- <p><strong>Summary:</strong> {{ article.summary }}</p> -->
+			<div class="article-content">
+				{{ article.content }}
+			</div>
+		</mat-card-content>
+	</mat-card>
+</ng-container>
+<ng-container *ngIf="!article">
+	<p>Loading article...</p>
+</ng-container>

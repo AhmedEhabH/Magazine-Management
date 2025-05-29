@@ -1,0 +1,6 @@
+@MagazineManagment_HostAddress = http://localhost:5230
+
+GET {{MagazineManagment_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

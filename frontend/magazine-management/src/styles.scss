@@ -1,0 +1,109 @@
+/* @use '@angular/material' as mat;
+@include mat.core();
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: none;
+}
+
+
+
+$primary: mat.m2-define-palette(mat.$m2-indigo-palette, 700, 500, 900);
+$accent: mat.m2-define-palette(mat.$m2-pink-palette, 500);
+$warn: mat.m2-define-palette(mat.$m2-red-palette);
+
+$light-theme: mat.m2-define-light-theme((color: (primary: $primary,
+				accent: $accent,
+				warn: $warn,
+			)));
+
+$dark-theme: mat.m2-define-dark-theme((color: (primary: $primary,
+				accent: $accent,
+				warn: $warn,
+			))); */
+
+// Default theme (light)
+/* @include mat.all-component-themes($light-theme); */
+
+// Dark theme styles under .dark-theme class
+/* .dark-theme {
+	@include mat.all-component-themes($dark-theme);
+} */
+
+// body {
+// 	background: #121212; // Or your preferred dark shade
+// 	color: #fff;
+// }
+
+/* Success and Error Snackbar Styles */
+/* .success-snackbar {
+	background-color: #4caf50 !important;
+	color: white !important;
+}
+
+.error-snackbar {
+	background-color: #f44336 !important;
+	color: white !important;
+} */
+
+/* Custom scrollbar for better UX */
+/* .register-container::-webkit-scrollbar {
+	width: 8px;
+}
+
+.register-container::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	border-radius: 10px;
+}
+
+.register-container::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 10px;
+}
+
+.register-container::-webkit-scrollbar-thumb:hover {
+	background: #555;
+} */
+
+/* Light theme (default) */
+:root {
+	--primary-color: #141414;
+	--background-color: #ffffff;
+	--surface-color: #f2f2f2;
+	--text-color: #141414;
+	--border-color: #f2f2f2;
+}
+
+/* Dark theme */
+.dark-theme {
+	--primary-color: #ffffff;
+	--background-color: #121212;
+	--surface-color: #1e1e1e;
+	--text-color: #ffffff;
+	--border-color: #333333;
+}
+
+body {
+	background-color: var(--background-color);
+	color: var(--text-color);
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Update your existing styles to use CSS variables */
+.dark-theme .text-\[\#141414\] {
+	color: var(--text-color) !important;
+}
+
+.dark-theme .bg-white {
+	background-color: var(--background-color) !important;
+}
+
+.dark-theme .border-b-\[\#f2f2f2\] {
+	border-bottom-color: var(--border-color) !important;
+}
+
+.dark-theme .bg-\[\#f2f2f2\] {
+	background-color: var(--surface-color) !important;
+	color: var(--text-color) !important;
+}

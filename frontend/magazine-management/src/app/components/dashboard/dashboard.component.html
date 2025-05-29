@@ -1,0 +1,23 @@
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="error">{{ error }}</div>
+<div *ngIf="stats">
+	<h2>Dashboard</h2>
+	<div class="dashboard-cards">
+		<app-card title="Total Users" [value]="stats.totalUsers"></app-card>
+		<app-card title="Total Magazines" [value]="stats.totalMagazines"></app-card>
+		<app-card title="Total Articles" [value]="stats.totalArticles"></app-card>
+		<app-card title="Published Magazines" [value]="stats.publishedMagazines"></app-card>
+		<app-card title="Pending Articles" [value]="stats.pendingArticles"></app-card>
+		<app-card title="Approved Articles" [value]="stats.approvedArticles"></app-card>
+		<app-card title="Rejected Articles" [value]="stats.rejectedArticles"></app-card>
+		<app-card title="Users Registered This Month" [value]="stats.usersRegisteredThisMonth"></app-card>
+	</div>
+	<div>
+		<h3>Recent Activity</h3>
+		<ul>
+			<li *ngFor="let activity of stats.recentActivity">
+				{{ activity | json }}
+			</li>
+		</ul>
+	</div>
+</div>
