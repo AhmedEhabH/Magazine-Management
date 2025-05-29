@@ -1,37 +1,71 @@
-/* magazines.component.scss */
+// /* magazines.component.scss */
+// .magazine-list {
+// 	display: flex;
+// 	// flex-direction: column;
+// 	flex-wrap: wrap;
+// 	gap: 16px;
+// 	justify-content: center;
+// 	align-items: center;
+// }
+
+// mat-card {
+// 	width: 300px;
+// 	margin: 8px;
+// 	display: flex;
+// 	flex-direction: column;
+// }
+
+// mat-card img[mat-card-image] {
+// 	object-fit: cover;
+// 	height: 200px;
+// 	width: 100%;
+// }
+
+// @media (max-width: 600px) {
+// 	.magazine-list {
+// 		flex-direction: column;
+// 		gap: 4px;
+// 		justify-content: flex-end;
+// 		/* Align magazines to bottom */
+// 		min-height: 100vh;
+// 	}
+
+// 	mat-card {
+// 		width: 100%;
+// 		margin: 4px 0;
+// 	}
+// }
+
+@import '../../styles/shared-styles.scss';
+
+.magazine-container {
+	@include responsive-container;
+}
+
 .magazine-list {
-	display: flex;
-	// flex-direction: column;
-	flex-wrap: wrap;
-	gap: 16px;
-	justify-content: center;
-	align-items: center;
-}
+	@include grid-layout(300px, 24px);
 
-mat-card {
-	width: 300px;
-	margin: 8px;
-	display: flex;
-	flex-direction: column;
-}
-
-mat-card img[mat-card-image] {
-	object-fit: cover;
-	height: 200px;
-	width: 100%;
-}
-
-@media (max-width: 600px) {
-	.magazine-list {
-		flex-direction: column;
-		gap: 4px;
-		justify-content: flex-end;
-		/* Align magazines to bottom */
-		min-height: 100vh;
+	@media (max-width: $breakpoint-sm) {
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 16px;
 	}
 
-	mat-card {
-		width: 100%;
-		margin: 4px 0;
+	@media (max-width: $breakpoint-xs) {
+		grid-template-columns: 1fr;
+		gap: 12px;
+	}
+}
+
+.magazine-card {
+	@include enhanced-card;
+
+	.magazine-image {
+		height: 200px;
+		object-fit: cover;
+		transition: transform 0.3s ease;
+
+		&:hover {
+			transform: scale(1.02);
+		}
 	}
 }

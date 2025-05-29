@@ -1,0 +1,338 @@
+// Shared Variables
+$primary-color: #1976d2;
+$primary-dark: #1565c0;
+$text-primary: #1a1a1a;
+$text-secondary: #666;
+$background-light: #fafafa;
+$card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+$card-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
+$border-light: #e0e0e0;
+$spacing-unit: 8px;
+
+// Breakpoints
+$breakpoint-xs: 480px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 992px;
+$breakpoint-lg: 1200px;
+
+// Mixins
+@mixin truncate-text($lines: 2) {
+	display: -webkit-box;
+	line-clamp: $lines;
+	-webkit-line-clamp: $lines;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+@mixin responsive-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	width: 100%;
+	padding: 0 $spacing-unit * 2;
+
+	@media (max-width: $breakpoint-sm) {
+		padding: 0 $spacing-unit * 1.5;
+	}
+
+	@media (max-width: $breakpoint-xs) {
+		padding: 0 $spacing-unit;
+	}
+}
+
+@mixin card-base {
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: $card-shadow;
+	border: 1px solid $border-light;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+	&:hover {
+		transform: translateY(-4px);
+		box-shadow: $card-shadow-hover;
+		border-color: $primary-color;
+	}
+
+	&:active {
+		transform: translateY(-2px);
+	}
+}
+
+@mixin section-title {
+	font-size: 2rem;
+	font-weight: 700;
+	color: $primary-color;
+	margin: 0 0 $spacing-unit 0;
+
+	@media (max-width: $breakpoint-sm) {
+		font-size: 1.75rem;
+	}
+}
+
+@mixin section-subtitle {
+	font-size: 1.1rem;
+	color: $text-secondary;
+	margin: 0;
+	font-weight: 400;
+
+	@media (max-width: $breakpoint-sm) {
+		font-size: 1rem;
+	}
+}
+
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin grid-layout($min-width: 300px, $gap: 24px) {
+	display: grid;
+	gap: $gap;
+	grid-template-columns: repeat(auto-fill, minmax($min-width, 1fr));
+}
+
+// Common Component Styles
+.page-header {
+	text-align: center;
+	margin-bottom: $spacing-unit * 4;
+	padding: $spacing-unit * 3 0;
+
+	.page-title {
+		@include section-title;
+		background: linear-gradient(45deg, $primary-color, lighten($primary-color, 15%));
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.page-subtitle {
+		@include section-subtitle;
+	}
+}
+
+.content-card {
+	@include card-base;
+	cursor: pointer;
+
+	.card-title {
+		font-size: 1.25rem;
+		font-weight: 600;
+		line-height: 1.4;
+		color: $text-primary;
+		margin-bottom: $spacing-unit;
+		@include truncate-text(2);
+	}
+
+	.card-meta {
+		display: flex;
+		flex-direction: column;
+		gap: $spacing-unit;
+		font-size: 0.875rem;
+		color: $text-secondary;
+
+		@media (min-width: $breakpoint-xs) {
+			flex-direction: row;
+			align-items: center;
+		}
+
+		.meta-item {
+			display: flex;
+			align-items: center;
+			gap: $spacing-unit / 2;
+
+			mat-icon {
+				font-size: 16px;
+				width: 16px;
+				height: 16px;
+			}
+		}
+	}
+
+	.card-content {
+		padding-top: $spacing-unit * 2;
+
+		.card-summary {
+			font-size: 0.95rem;
+			line-height: 1.6;
+			color: #444;
+			margin: 0;
+			@include truncate-text(3);
+		}
+	}
+
+	.card-actions {
+		padding: $spacing-unit $spacing-unit * 2 $spacing-unit * 2;
+		margin: 0;
+
+		button {
+			font-weight: 500;
+			border-radius: $spacing-unit;
+
+			mat-icon {
+				margin-right: $spacing-unit / 2;
+				font-size: 18px;
+				width: 18px;
+				height: 18px;
+			}
+		}
+	}
+}
+
+.content-grid {
+	@include grid-layout(300px, 24px);
+}
+
+.section-container {
+	@include responsive-container;
+	margin-bottom: $spacing-unit * 4;
+}
+
+.loading-container {
+	@include flex-center;
+	padding: $spacing-unit * 8 $spacing-unit * 3;
+
+	.loading-spinner {
+		text-align: center;
+
+		mat-icon {
+			font-size: 48px;
+			height: 48px;
+			width: 48px;
+			animation: spin 1.5s linear infinite;
+			color: $primary-color;
+			margin-bottom: $spacing-unit * 2;
+		}
+
+		p {
+			font-size: 1rem;
+			color: $text-secondary;
+			margin: 0;
+		}
+	}
+}
+
+.empty-state {
+	text-align: center;
+	padding: $spacing-unit * 8 $spacing-unit * 3;
+	color: $text-secondary;
+
+	.empty-icon {
+		font-size: 64px;
+		width: 64px;
+		height: 64px;
+		color: #ccc;
+		margin-bottom: $spacing-unit * 2;
+	}
+
+	h3 {
+		font-size: 1.5rem;
+		font-weight: 600;
+		margin: 0 0 $spacing-unit 0;
+		color: $text-primary;
+	}
+
+	p {
+		font-size: 1rem;
+		margin: 0;
+		max-width: 400px;
+		margin: 0 auto;
+	}
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+// Add these enhanced card mixins
+@mixin enhanced-card {
+	@include card-base;
+	cursor: pointer;
+
+	.card-header {
+		padding: 16px 16px 8px;
+
+		.card-title {
+			font-size: 1.25rem;
+			font-weight: 600;
+			line-height: 1.4;
+			color: $text-primary;
+			margin-bottom: 8px;
+			@include truncate-text(2);
+		}
+
+		.card-meta {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+			font-size: 0.875rem;
+			color: $text-secondary;
+
+			@media (min-width: $breakpoint-xs) {
+				flex-direction: row;
+				align-items: center;
+			}
+
+			.meta-item {
+				display: flex;
+				align-items: center;
+				gap: 4px;
+
+				mat-icon {
+					font-size: 16px;
+					width: 16px;
+					height: 16px;
+				}
+			}
+		}
+	}
+
+	.card-content {
+		padding: 16px;
+
+		.card-summary {
+			font-size: 0.95rem;
+			line-height: 1.6;
+			color: #444;
+			margin: 0;
+			@include truncate-text(3);
+		}
+	}
+
+	.card-actions {
+		padding: 8px 16px 16px;
+		margin: 0;
+
+		button {
+			font-weight: 500;
+			border-radius: 8px;
+
+			mat-icon {
+				margin-right: 4px;
+				font-size: 18px;
+				width: 18px;
+				height: 18px;
+			}
+		}
+	}
+}
+
+// Add focus management
+@mixin focus-visible {
+	&:focus-visible {
+		outline: 2px solid $primary-color;
+		outline-offset: 2px;
+	}
+}
+
+// Apply to interactive elements
+.content-card,
+button,
+[role="button"] {
+	@include focus-visible;
+}

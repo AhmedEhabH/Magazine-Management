@@ -1,3 +1,16 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build results
+bin/
+obj/
+
+backend/MagazineManagment/.vs/
+backend/MagazineManagment/bin/
+backend/MagazineManagment/obj/
+
 # Backend (.NET)
 backend/MagazineManagment/MagazineManagment/bin/
 backend/MagazineManagment/MagazineManagment/obj/

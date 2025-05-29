@@ -1,0 +1,38 @@
+<mat-card class="content-card" (click)="onCardClick()">
+  <!-- Image if provided -->
+  <img *ngIf="imageUrl" mat-card-image [src]="imageUrl" alt="{{title}}" class="card-image">
+  
+  <mat-card-header>
+    <mat-card-title class="card-title">{{ title }}</mat-card-title>
+    <mat-card-subtitle class="card-meta" *ngIf="subtitle || date || metadata.length">
+      <span *ngIf="subtitle" class="subtitle-text">{{ subtitle }}</span>
+      
+      <span *ngIf="date" class="meta-item date">
+        <mat-icon>schedule</mat-icon>
+        {{ formatDate(date) }}
+      </span>
+      
+      <ng-container *ngFor="let item of metadata">
+        <span class="meta-item" (click)="onMetadataClick($event, item.action)" 
+              [class.clickable]="item.action">
+          <mat-icon>{{ item.icon }}</mat-icon>
+          <span>{{ item.text }}</span>
+        </span>
+      </ng-container>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="card-content" *ngIf="summary">
+    <p class="card-summary">{{ summary }}</p>
+  </mat-card-content>
+
+  <mat-card-actions class="card-actions" *ngIf="actions.length">
+    <button *ngFor="let action of actions" 
+            mat-button 
+            [color]="action.color || 'primary'" 
+            (click)="onActionClick($event, action.action)">
+      <mat-icon *ngIf="action.icon">{{ action.icon }}</mat-icon>
+      {{ action.text }}
+    </button>
+  </mat-card-actions>
+</mat-card>
